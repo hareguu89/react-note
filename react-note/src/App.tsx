@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react'
-import store from './store'
-import Counter from './components/count'
+import Counter from './components/Count'
+import { ChakraProvider, Box, theme } from "@chakra-ui/react";
+import TodoList from './components/TodoList';
+import TodoAdd from './components/TodoAdd';
 
 function App() {
-
-  useEffect(() => {
-    console.log(store)
-  }, [])
-  
   return (
-    <Counter/>
+    <ChakraProvider theme={theme}>
+      <Counter/>
+      <Box maxWidth="8xl" margin="auto" p={5}>
+        <TodoList />
+        <TodoAdd />
+      </Box>
+    </ChakraProvider>
   )
 }
 

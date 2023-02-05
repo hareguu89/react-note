@@ -1,6 +1,6 @@
 import * as React from 'react';
 import store from '../store';
-import { useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 
 const Count = () => {
     const { numberStore }  = store;
@@ -13,14 +13,14 @@ const Count = () => {
         numberStore.decreaseAction(2);
     }
 
-    return useObserver(() => (
+    return (
         <div>
             <p>현재 값: {numberStore.num}</p>
 
             <button onClick={onClickIncrease}>증가</button>
             <button onClick={onClickDecrease}>감소</button>
         </div>
-    ))
+    )
 }
 
-export default Count;
+export default observer(Count);
