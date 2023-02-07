@@ -6,7 +6,11 @@ import store from "../store/Todo";
 function TodoAdd() {
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
-      <Input placeholder="New todo" value={store.newTodo} onChange={(e) => store.newTodo = e.target.value}/>
+      <Input
+        placeholder="New todo"
+        value={store.newTodo}
+        onChange={(e) => (store.newTodo = e.target.value)}
+      />
       <Button onClick={() => store.addTodo()}>Add Todo</Button>
     </Grid>
   );

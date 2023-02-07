@@ -1,5 +1,5 @@
-import numberStore from './number'
+import numberStore from "./number";
 
 export default {
-    numberStore
-}
+  numberStore,
+};
