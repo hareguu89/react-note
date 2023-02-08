@@ -2,7 +2,7 @@ import Counter from "./components/Count";
 import { ChakraProvider, Box, theme } from "@chakra-ui/react";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
-import D3 from "./components/D3";
+import D3 from "./components/D3BarChart";
 
 function App() {
   return (
