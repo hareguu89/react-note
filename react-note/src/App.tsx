@@ -3,6 +3,8 @@ import { ChakraProvider, Box, theme } from "@chakra-ui/react";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
 import D3 from "./components/D3BarChart";
+import D3Update from "./components/D3Update";
+import TransitionEx from "./components/D3Transition";
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
         <TodoList />
         <TodoAdd />
       </Box>
-      <D3 />
+      {/* <D3 />
+      <D3Update /> */}
+      <TransitionEx />
     </ChakraProvider>
   );
 }

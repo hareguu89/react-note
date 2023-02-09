@@ -8,6 +8,7 @@ const TodoListItems = observer(() => (
     {store.todos.map((todo: Todo) => (
       <Flex pt={2} key={todo.id}>
         <Checkbox onClick={() => (todo.done = !todo.done)} />
+
         <Input
           mx={2}
           value={todo.text}
