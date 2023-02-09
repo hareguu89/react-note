@@ -3,6 +3,8 @@ import { select, Selection } from "d3-selection";
 import { scaleBand, scaleLinear } from "d3-scale";
 import { max } from "d3-array";
 import { axisBottom, axisLeft } from "d3-axis";
+import { easeBounce, easeQuad, easeQuadIn, easeElastic } from "d3-ease";
+import "d3-transition";
 
 const initialData = [
   {
@@ -69,10 +71,19 @@ const D3Update = () => {
         .enter()
         .append("rect")
         .attr("width", x.bandwidth)
-        .attr("height", (d) => dimensions.chartHeight - y(d.units))
+        .attr("height", 0)
+        .attr("fill", "orange")
         .attr("x", (d) => x(d.name)!)
-        .attr("y", (d) => y(d.units))
-        .attr("fill", "orange");
+        .attr("height", 0)
+        .attr("y", dimensions.height)
+
+        .transition()
+        .duration(500)
+        .delay((_, i) => i * 100)
+        .ease(easeElastic)
+
+        .attr("height", (d) => dimensions.height - y(d.units))
+        .attr("y", (d) => y(d.units));
     }
   }, [selection]);
 
@@ -86,22 +97,47 @@ const D3Update = () => {
         .paddingInner(0.05);
       const rects = selection.selectAll("rect").data(data);
 
-      rects.exit().remove();
       rects
+        .exit()
+        .transition()
+        .duration(300)
+        .attr("y", dimensions.height)
+        .attr("height", 0)
+        .remove();
+
+      rects
+        .transition()
+        .duration(300)
         .attr("width", x.bandwidth)
-        .attr("height", (d) => dimensions.chartHeight - y(d.units))
+        .attr("height", (d) => dimensions.height - y(d.units))
         .attr("x", (d) => x(d.name)!)
         .attr("y", (d) => y(d.units))
         .attr("fill", "orange");
 
-      rects.enter().append("rect");
+      rects
+        .enter()
+        .append("rect")
+        .attr("width", x.bandwidth)
+        .attr("height", 0)
+        .attr("fill", "orange")
+        .attr("x", (d) => x(d.name)!)
+        .attr("y", dimensions.height)
+        .attr("height", 0)
+
+        .transition()
+        .duration(1000)
+        .delay(300)
+        .ease(easeElastic)
+
+        .attr("y", (d) => y(d.units))
+        .attr("height", (d) => dimensions.height - y(d.units));
     }
   }, [data]);
 
   const addRandomUnits = () => {
     const dataToBeAdded = {
       name: `${Math.random() * 100}`,
-      units: Math.floor(Math.random() * 80 + 20),
+      units: Math.floor(Math.random() * 8000 + 20),
     };
     setData([...data, dataToBeAdded]);
   };

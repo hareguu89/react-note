@@ -14,8 +14,8 @@ function App() {
         <TodoList />
         <TodoAdd />
       </Box>
-      {/* <D3 />
-      <D3Update /> */}
+      {/* <D3 /> */}
+      <D3Update />
       <TransitionEx />
     </ChakraProvider>
   );

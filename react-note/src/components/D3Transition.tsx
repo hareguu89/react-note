@@ -5,7 +5,7 @@ import "d3-transition";
 import { useEffect, useRef, useState } from "react";
 
 const Button = styled.button`
-  background-color: "blue";
+  background-color: " blue";
   transition-duration: 500ms;
   transition-timing-function: ease-in-out;
 
