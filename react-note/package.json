@@ -77,6 +77,13 @@
     "setupFilesAfterEnv": [
       "<rootDir>/jest-setup.ts"
     ],
+    "collectiveCoverageFrom": [
+      "src/**.*.{ts,tsx,js,jsx}",
+      "!src/**.*.d.ts"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!d3|d3-array|internmap|delaunator|robust-predicates)"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     }
